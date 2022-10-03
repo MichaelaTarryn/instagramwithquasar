@@ -4,17 +4,41 @@
     class="bg-white text-grey-10"
     bordered
     >
-      <q-toolbar>
+      <q-toolbar class="constrain"
+      >
+        <q-btn
+        class="large-screen-only q-mr-sm"
+         to="/camera"
+        icon="eva-camera-outline"
+        size="18px"
+        dense
+        flat
+         round
+        />
+        <q-separator
+        class="large-screen-only"
+        vertical
+        spaced
+        />
         <q-toolbar-title
         class="text-grand-hotel text-bold"
 
          >
           QuasarGram
         </q-toolbar-title>
+        <q-btn
+        class="large-screen-only"
+        flat
+         round
+        icon="eva-home-outline"
+        size="18px"
+        to="/"
+        dense
+        />
       </q-toolbar>
     </q-header>
     <q-footer
-    class="bg-white"
+    class="bg-white small-screen-only"
     bordered>
           <q-tabs
           class="text-grey-10"
@@ -45,8 +69,13 @@ export default ({
 })
 </script>
 <style lang="sass">
+.q-toolbar
+  @media (min-width: $breakpoint-sm-min)
+    height: 77px
 .q-toolbar__title
-    text-align: center
+    font-size: 30px
+    @media (max-width: $breakpoint-xs-max)
+      text-align: center
 .q-footer
   .q-tab_icon
     font-size: 30px
