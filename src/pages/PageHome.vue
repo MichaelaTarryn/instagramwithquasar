@@ -1,10 +1,11 @@
 <template>
   <q-page class="constrain q-pa-md">
-    <q-card
-    v-for="post in posts" :keys="posts.id"
+    <q-card v-for="(post,index) in posts"
+    :key="posts.id"
+    class="card-post q-mb-md"
      flat
      bordered
-     class="card-post">
+    >
       <q-item>
         <q-item-section avatar>
           <q-avatar>
@@ -15,17 +16,17 @@
         <q-item-section>
           <q-item-label class="text-bold">Dannu22</q-item-label>
           <q-item-label caption>
-            San Franciso, United States
+           {{posts.location}}
           </q-item-label>
         </q-item-section>
       </q-item>
 
       <q-separator />
-      <img src="https://cdn.quasar.dev/img/parallax2.jpg">
+      <q-img :src="this.posts[index].img" />
 
       <q-card-section>
-        <div>Golden gate </div>
-        <div class="text-caption text-grey">June 10 9:04am</div>
+        <div>{{ posts.caption }}</div>
+        <div class="text-caption text-grey">{{this.posts[index].date | niceDate}}</div>
       </q-card-section>
 
     </q-card>
@@ -34,50 +35,56 @@
 
 <script>
 
+import { date } from 'quasar'
 
-export default({
+export default{
   name: 'PageHome',
   data(){
-    return{
-      posts:[
+    return {
+      posts: [
         {
           id: 1,
-          cation:'goldren gate bridge',
+          caption:'goldren gate bridge',
           date: 1591776655504,
           location:'San Franciso , United States',
-          imageUrl:'https://cdn.quasar.dev/img/parallax2.jpg'
+          img:'https://www.makro.co.za/sys-master/images/h2a/h41/8904185970718/silo-MIN_157613_EAA_large?quality=340x372'
 
         },
         {
           id: 2,
-          cation:'goldren gate bridge',
+          caption:'goldren gate bridge',
           date: 1591776655504,
           location:'San Franciso , United States',
-          imageUrl:'https://cdn.quasar.dev/img/parallax2.jpg'
+          img:'https://cdn.quasar.dev/img/parallax2.jpg'
 
         },
         {
           id: 3,
-          cation:'goldren gate bridge',
+          caption:'goldren gate bridge',
           date: 1591776655504,
           location:'San Franciso , United States',
-          imageUrl:'https://cdn.quasar.dev/img/parallax2.jpg'
+          img:'https://cdn.quasar.dev/img/parallax2.jpg'
 
         },
-        ,
+
         {
           id: 4,
-          cation:'goldren gate bridge',
+          caption:'goldren gate bridge',
           date: 1591776655504,
           location:'San Franciso , United States',
-          imageUrl:'https://cdn.quasar.dev/img/parallax2.jpg'
+          img:'https://cdn.quasar.dev/img/parallax2.jpg'
 
         },
 
       ]
     }
+  },
+  filters:{
+    niceDate(value) {
+      return date.formatDate(value, 'HH:ssA Do-MMM-YYYY' )
+    }
   }
-})
+}
 </script>
 <style lang="sass">
 .card-post
